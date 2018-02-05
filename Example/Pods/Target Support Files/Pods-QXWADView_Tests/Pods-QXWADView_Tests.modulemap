@@ -1,0 +1,6 @@
+framework module Pods_QXWADView_Tests {
+  umbrella header "Pods-QXWADView_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

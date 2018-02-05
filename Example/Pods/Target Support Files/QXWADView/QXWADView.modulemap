@@ -1,0 +1,6 @@
+framework module QXWADView {
+  umbrella header "QXWADView-umbrella.h"
+
+  export *
+  module * { export * }
+}
