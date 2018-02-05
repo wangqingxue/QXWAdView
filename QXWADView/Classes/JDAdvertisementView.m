@@ -78,15 +78,17 @@
 
 #pragma mark --get
 - (NSTimer *)baseTimer{
-    NSInteger __block baseInteger = self.timeCount ? self.timeCount : 5;
     if (!_baseTimer){
-        _baseTimer = [NSTimer timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
-            [self.jumpBtn setTitle:[NSString stringWithFormat:@"剩余%ld",baseInteger] forState:UIControlStateNormal];
-            baseInteger --;
-            if (baseInteger < 0) [self closeADView];
-        }];
+        _baseTimer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(reduceTime) userInfo:nil repeats:YES];
     }
     return _baseTimer;
+}
+
+- (void)reduceTime{
+    NSInteger __block baseInteger = self.timeCount ? self.timeCount : 5;
+    [self.jumpBtn setTitle:[NSString stringWithFormat:@"剩余%ld",(long)baseInteger] forState:UIControlStateNormal];
+    baseInteger --;
+    if (baseInteger < 0) [self closeADView];
 }
 
 - (UITapGestureRecognizer *)imageTapGesture{
